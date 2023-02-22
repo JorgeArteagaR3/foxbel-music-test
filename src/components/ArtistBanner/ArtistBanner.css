@@ -1,0 +1,12 @@
+.bg-image {
+    background: linear-gradient(
+            0deg,
+            rgba(167, 0, 0, 0.7),
+            rgba(167, 0, 0, 0.7)
+        ),
+        url("https://music-b26f.kxcdn.com/wp-content/uploads/2015/08/adele-770x470.jpg");
+    mix-blend-mode: normal;
+    opacity: 0.5;
+    background-position: top;
+    background-size: cover;
+}

@@ -1,0 +1,36 @@
+.volume {
+    outline: none;
+    -webkit-appearance: none;
+    background: white;
+    height: 6px;
+    border-radius: 100px;
+}
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .volume::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+    }
+
+    .mute-volume {
+        height: 42px;
+        width: 30px;
+    }
+
+    .music-player {
+        height: 21px;
+    }
+
+    .music-change {
+        height: 36px;
+        width: 36px;
+    }
+}

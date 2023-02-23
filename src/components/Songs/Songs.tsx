@@ -23,7 +23,7 @@ export const Songs = () => {
         }
     }, [masterAudio]);
 
-    const handlePlayPause = () => {
+    const handlePlayMusic = () => {
         if (audioPlayer) {
             if (isPlaying) {
                 audioPlayer.pause();
@@ -51,7 +51,7 @@ export const Songs = () => {
                             isPlaying={
                                 masterAudio === song.preview && isPlaying
                             }
-                            handlePlayPause={handlePlayPause}
+                            handlePlayMusic={handlePlayMusic}
                             setMasterAudio={setMasterAudio}
                         />
                     );

@@ -13,11 +13,11 @@ export const SongCard = ({
     preview,
     id,
     isPlaying,
-    handlePlayPause,
+    handlePlayMusic,
     setMasterAudio,
 }: Song & {
     isPlaying: boolean;
-    handlePlayPause: () => void;
+    handlePlayMusic: () => void;
     setMasterAudio: (value: SetStateAction<string>) => void;
 }) => {
     const {
@@ -39,13 +39,13 @@ export const SongCard = ({
                 />
                 <button
                     className="absolute left-0 right-0 top-0 bottom-0 cursor-pointer w-full h-[full] flex items-center justify-center"
-                    onClick={handlePlayPause}
+                    onClick={handlePlayMusic}
                 >
                     {isPlaying ? (
                         <FaPause
                             color="white"
                             size={30}
-                            onClick={handlePlayPause}
+                            onClick={handlePlayMusic}
                         />
                     ) : (
                         <FaPlay
@@ -53,6 +53,7 @@ export const SongCard = ({
                             size={30}
                             onClick={() => {
                                 setMasterAudio(preview);
+                                handleSong();
                             }}
                         />
                     )}

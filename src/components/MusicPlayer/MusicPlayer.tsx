@@ -1,4 +1,4 @@
-import { FaPlay, FaVolumeOff } from "react-icons/fa";
+import { FaPlay, FaVolumeOff, FaPause } from "react-icons/fa";
 import { MdSkipNext } from "react-icons/md";
 import { Song } from "../../types";
 import "./MusicPlayer.css";
@@ -22,10 +22,17 @@ export const MusicPlayer = ({ song }: { song: Song | undefined }) => {
                     className="rotate-180 music-change"
                 />
                 <div className="bg-lightred h-[40px] w-[40px]  md:h-[60px] md:w-[60px] flex items-center justify-center rounded-full">
-                    <FaPlay
-                        className="music-player"
-                        color="white"
-                    />
+                    {song?.isPlaying ? (
+                        <FaPause
+                            color="white"
+                            size={30}
+                        />
+                    ) : (
+                        <FaPlay
+                            className="music-player"
+                            color="white"
+                        />
+                    )}
                 </div>
                 <MdSkipNext
                     className="music-change"

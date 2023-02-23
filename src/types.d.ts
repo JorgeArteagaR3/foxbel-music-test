@@ -12,4 +12,14 @@ export interface Song {
     preview: string;
     className?: string;
     isPlaying: boolean;
+    albumName?: string;
+}
+
+export interface Album {
+    title: string;
+    artist_name: string;
+    fans: number;
+    description?: string;
+    artist_picture: string;
+    album_cover: string;
 }

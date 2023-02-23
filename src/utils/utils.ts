@@ -1,5 +1,6 @@
 import { SetStateAction } from "react";
 import { Song } from "../types";
+
 export const convertArrToSongs = (
     arr: any,
     callback: (value: SetStateAction<Song[]>) => void
@@ -11,6 +12,11 @@ export const convertArrToSongs = (
         title: obj.title,
         preview: obj.preview,
         id: obj.id,
+        albumName: obj.album.title,
     }));
     callback(newSongs);
+};
+
+export const numberWithCommas = (value: number | undefined) => {
+    return value?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };

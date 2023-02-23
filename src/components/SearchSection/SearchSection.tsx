@@ -23,7 +23,7 @@ export const SearchSection = ({ className }: { className?: string }) => {
             <div className="w-[50%] px-4 py-1 border border-solid border-gray rounded-full flex  gap-1 items-center">
                 <input
                     onChange={handleChange}
-                    className="w-full focus:outline-none border-none rounded-full text-xs"
+                    className="w-full focus:outline-none border-none rounded-full text-xs md:text-lg"
                     type="text"
                     placeholder="Buscar"
                 />

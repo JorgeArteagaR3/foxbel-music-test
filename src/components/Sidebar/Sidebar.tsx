@@ -13,7 +13,7 @@ export const Sidebar = () => {
     return (
         <aside
             className={clsx(
-                "bg-secondary text-white pt-8 flex flex-col items-start gap-8 transition-all duration-500 lg:w-[330px]",
+                "bg-secondary text-white pt-8 flex flex-col items-start gap-8 transition-all duration-500 lg:w-[330px] sticky",
                 isOpen ? "w-[50%]" : "w-[20%]"
             )}
         >

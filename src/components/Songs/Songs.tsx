@@ -1,39 +1,22 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, SetStateAction } from "react";
 import { SongCard } from "../SongCard/SongCard";
 import { MyContext } from "../../App";
 import { Song } from "../../types";
 
 export const Songs = () => {
-    const { songs }: { songs: Song[] } = useContext(MyContext);
-
-    const [masterAudio, setMasterAudio] = useState<string>("");
-    const [audioPlayer, setAudioPlayer] = useState<HTMLAudioElement>();
-    const [isPlaying, setIsPlaying] = useState(false);
-
-    useEffect(() => {
-        if (masterAudio) {
-            if (audioPlayer) {
-                audioPlayer.pause();
-                setIsPlaying(false);
-            }
-            const newAudioPlayer = new Audio(masterAudio);
-            setAudioPlayer(newAudioPlayer);
-            newAudioPlayer.play();
-            setIsPlaying(true);
-        }
-    }, [masterAudio]);
-
-    const handlePlayMusic = () => {
-        if (audioPlayer) {
-            if (isPlaying) {
-                audioPlayer.pause();
-                setIsPlaying(false);
-            } else {
-                audioPlayer.play();
-                setIsPlaying(true);
-            }
-        }
-    };
+    const {
+        songs,
+        masterAudio,
+        isPlaying,
+        setMasterAudio,
+        handlePlayMusic,
+    }: {
+        songs: Song[];
+        masterAudio: string;
+        isPlaying: boolean;
+        setMasterAudio: (value: SetStateAction<string>) => void;
+        handlePlayMusic: () => void;
+    } = useContext(MyContext);
 
     return (
         <div>

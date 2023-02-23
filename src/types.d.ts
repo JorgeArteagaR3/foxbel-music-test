@@ -22,4 +22,5 @@ export interface Album {
     description?: string;
     artist_picture: string;
     album_cover: string;
+    albumId: number;
 }

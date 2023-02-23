@@ -9,7 +9,9 @@ export const SidebarLinks = ({
 }: SidebarTitles) => {
     return (
         <div className={className}>
-            <h2 className="pl-4 md:pl-10 font-bold text-md mb-2">{title}</h2>
+            <h2 className="pl-4 md:pl-10 font-bold text-md mb-2 lg:text-[22px]">
+                {title}
+            </h2>
             <ul className="text-sm">
                 {sideLinks.map((link) => (
                     <li

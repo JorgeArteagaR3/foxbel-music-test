@@ -41,7 +41,7 @@ function App() {
             (data) => {
                 if (data) {
                     const arr = data.data;
-                    console.log(data.data);
+
                     convertArrToSongs(arr, setSongs);
                 }
             }
@@ -81,6 +81,7 @@ function App() {
                     user,
                     setSearchValue,
                     songs,
+                    setSongs,
                     setActualSong,
                     masterAudio,
                     isPlaying,
@@ -96,8 +97,8 @@ function App() {
                 />
                 <Sidebar />
                 <main className="px-4 pt-4 md:px-10 md:pt-[30px] w-[80%]">
-                    <SearchSection className="mb-4" />
-                    <ArtistBanner className="mb-4" />
+                    <SearchSection className="mb-4 lg:mb-10" />
+                    <ArtistBanner className="mb-4 lg:mb-10" />
                     <Songs />
                 </main>
             </MyContext.Provider>

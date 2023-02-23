@@ -20,7 +20,7 @@ export const SearchSection = ({ className }: { className?: string }) => {
 
     return (
         <div className={clsx("flex justify-between items-center", className)}>
-            <div className="w-[50%] px-4 py-1 border border-solid border-gray rounded-full flex  gap-1 items-center">
+            <div className="w-[50%] px-4 py-1 border border-solid border-gray rounded-full flex gap-1 items-center">
                 <input
                     onChange={handleChange}
                     className="w-full focus:outline-none border-none rounded-full text-xs md:text-lg"
@@ -29,12 +29,14 @@ export const SearchSection = ({ className }: { className?: string }) => {
                 />
                 <FaSearch color="var(--softgray)" />
             </div>
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5 items-center">
                 <FaUser
                     size={14}
                     color="var(--primary)"
                 />
-                <p className="text-xs first-letter:uppercase">{user}</p>
+                <p className="text-xs first-letter:uppercase md:text-base">
+                    {user}
+                </p>
             </div>
         </div>
     );

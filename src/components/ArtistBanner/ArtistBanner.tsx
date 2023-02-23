@@ -5,18 +5,27 @@ import { useContext, useEffect, useState } from "react";
 import { MyContext } from "../../App";
 import { Song } from "../../types";
 import { getData } from "../../services/getData";
+import { SetStateAction } from "react";
 import { Album } from "../../types";
-import { numberWithCommas } from "../../utils/utils";
+import { convertArrToSongs, numberWithCommas } from "../../utils/utils";
 
 export const ArtistBanner = ({ className }: { className?: string }) => {
-    const { songs, actualSong }: { songs: Song[]; actualSong: Song } =
-        useContext(MyContext);
+    const {
+        songs,
+        actualSong,
+        setSongs,
+    }: {
+        songs: Song[];
+        actualSong: Song;
+        setSongs: (value: SetStateAction<Song[]>) => void;
+    } = useContext(MyContext);
 
     const [album, setAlbum] = useState<Album>();
 
     useEffect(() => {
         getData(`https://api.deezer.com/album/302127`).then((data) => {
             setAlbum({
+                albumId: data.id,
                 fans: data.fans,
                 artist_name: data.artist.name,
                 title: data.title,
@@ -26,7 +35,17 @@ export const ArtistBanner = ({ className }: { className?: string }) => {
             });
         });
     }, []);
-    console.log(album);
+
+    const getAlbumSongs = () => {
+        getData(`https://api.deezer.com/album/${album?.albumId}`).then(
+            (data) => {
+                if (data) {
+                    const arr = data.tracks.data;
+                    convertArrToSongs(arr, setSongs);
+                }
+            }
+        );
+    };
     return (
         <div className={clsx("md:flex md:h-[250px] md:w-full", className)}>
             <img
@@ -45,7 +64,10 @@ export const ArtistBanner = ({ className }: { className?: string }) => {
                     {album?.description}
                 </p>
                 <div className="z-10 flex flex-col md:flex-row justify-between md:justify-start items-center text-xs gap-1.5 md:gap-5">
-                    <button className="bg-primary rounded-full w-[110px] py-1">
+                    <button
+                        onClick={() => getAlbumSongs()}
+                        className="bg-primary rounded-full w-[110px] py-1"
+                    >
                         Reproducir
                     </button>
                     <button className="border-solid border rounded-full border-[var(--primary)] w-[110px] py-1 text-primary">

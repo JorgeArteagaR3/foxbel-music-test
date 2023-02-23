@@ -1,21 +1,22 @@
 import { FaPlay, FaVolumeOff } from "react-icons/fa";
 import { MdSkipNext } from "react-icons/md";
+import { Song } from "../../types";
 import "./MusicPlayer.css";
-export const MusicPlayer = () => {
+export const MusicPlayer = ({ song }: { song: Song | undefined }) => {
     return (
-        <div className="h-[60px] md:h-[100px] fixed w-full left-0 right-0 bottom-0 bg-[#EB5757]  flex justify-between z-20 pr-[10px] md:pr-[32px] max-w-[1300px] mx-auto">
-            <div className="flex gap-2 md:gap-5 items-center">
+        <div className="h-[60px] md:h-[100px] fixed w-full left-0 right-0 bottom-0 bg-[#EB5757]  grid grid-cols-3 z-20 pr-[10px] md:pr-[32px] max-w-[1300px] mx-auto">
+            <div className="flex gap-2 md:gap-5 items-center md:max-w-[250px] lg:max-w-none lg:w-[320px]">
                 <img
-                    src="https://bloximages.chicago2.vip.townnews.com/fontanaheraldnews.com/content/tncms/assets/v3/editorial/8/3b/83b610e4-b811-11ec-a0d7-b763888abef4/6251987c48896.image.jpg"
+                    src={song?.cover}
                     alt=""
-                    className="w-[60px] md:w-[100px]"
+                    className="w-[60px] md:w-[100px] hidden md:block"
                 />
-                <div className="text-white">
-                    <p className="font-bold text-sm">EL NENE</p>
-                    <p className="text-xs">Anuel</p>
+                <div className="text-white pl-4 md:pl-0">
+                    <p className="font-bold text-sm">{song?.title}</p>
+                    <p className="text-xs">{song?.artist}</p>
                 </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 place-self-center">
                 <MdSkipNext
                     color="white"
                     className="rotate-180 music-change"
@@ -31,7 +32,7 @@ export const MusicPlayer = () => {
                     color="white"
                 />
             </div>
-            <div className="flex items-center md:gap-10">
+            <div className="flex items-center md:gap-10 place-self-end self-center">
                 <input
                     type="range"
                     className="volume w-[70px] md:w-[100px]"

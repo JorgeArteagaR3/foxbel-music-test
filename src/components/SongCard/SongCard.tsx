@@ -1,15 +1,67 @@
 import clsx from "clsx";
-export const SongCard = ({ className }: { className?: string }) => {
+import { FaPlay, FaPause } from "react-icons/fa";
+import { Song } from "../../types";
+import { SetStateAction } from "react";
+import { useContext } from "react";
+import { MyContext } from "../../App";
+
+export const SongCard = ({
+    className,
+    cover,
+    title,
+    artist,
+    preview,
+    id,
+    isPlaying,
+    handlePlayPause,
+    setMasterAudio,
+}: Song & {
+    isPlaying: boolean;
+    handlePlayPause: () => void;
+    setMasterAudio: (value: SetStateAction<string>) => void;
+}) => {
+    const {
+        setActualSong,
+    }: { setActualSong: (value: SetStateAction<Song>) => void } =
+        useContext(MyContext);
+
+    const handleSong = () => {
+        setActualSong({ artist, cover, title, preview, id, isPlaying });
+    };
+
     return (
         <div className="card">
-            <img
-                src="https://bloximages.chicago2.vip.townnews.com/fontanaheraldnews.com/content/tncms/assets/v3/editorial/8/3b/83b610e4-b811-11ec-a0d7-b763888abef4/6251987c48896.image.jpg"
-                alt=""
-                className={clsx("mb-2", className)}
-            />
+            <figure className="relative">
+                <img
+                    src={cover}
+                    alt={title}
+                    className={clsx("mb-2", className)}
+                />
+                <button
+                    className="absolute left-0 right-0 top-0 bottom-0 cursor-pointer w-full h-[full] flex items-center justify-center"
+                    onClick={handlePlayPause}
+                >
+                    {isPlaying ? (
+                        <FaPause
+                            color="white"
+                            size={30}
+                            onClick={handlePlayPause}
+                        />
+                    ) : (
+                        <FaPlay
+                            color="white"
+                            size={30}
+                            onClick={() => {
+                                setMasterAudio(preview);
+                            }}
+                        />
+                    )}
+                </button>
+            </figure>
+
             <div>
-                <p className="font-bold text-sm">EL NENE</p>
-                <p className="text-xs">Anuel</p>
+                <p className="font-bold text-sm">{title}</p>
+                <p className="text-xs">{artist}</p>
             </div>
         </div>
     );
